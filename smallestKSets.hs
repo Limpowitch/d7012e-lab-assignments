@@ -1,3 +1,5 @@
+-- Lab 1
+
 -- Function to retrieve all subsets. 
 allContiguousSublists :: [Int] -> [([Int], (Int, Int))]
 allContiguousSublists xs =
