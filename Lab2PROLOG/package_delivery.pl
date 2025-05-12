@@ -73,19 +73,21 @@ drop(
 
 solveR(Start, MaxDepth, Moves) :-
     solveR(Start, MaxDepth, [Start], Moves),
-    !.
+    !,
+    write_term(Moves, [max_depth(0)]),          % Had to add this to ensure we get the full printout
+    nl.
 
-solveR(state(_,_,_,r2,_), _, _, []).
+solveR(state(_,_,_,r2,_), _, _, []).            % Our final state we try to reach "stop when package = r2"
 
-solveR(State, N, Visited, [Action|Rest]) :-
+solveR(State, N, Visited, [Action|Rest]) :-     % For each N, we check if move, grab, drop is legal, and if so, execute it
     N > 0,
     (   move(State,   Action, Next)
     ;   grab(State,   Action, Next)
     ;   drop(State,   Action, Next)
     ),
-    \+ member(Next, Visited),
+    \+ member(Next, Visited),                   % Ensures we dont revisit previous state, fixes infinate loops
     N1 is N - 1,
-    solveR(Next, N1, [Next|Visited], Rest).
+    solveR(Next, N1, [Next|Visited], Rest).     % Recursively call itself for next action (N1)
 
-% invoke with: solveR(state(r1,r1,r2,r3,0), 20, Moves), write_term(Moves, [max_depth(0)]), nl.
+% invoke with: solveR(state(r1,r1,r2,r3,0), 15, _)
     

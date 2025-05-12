@@ -10,6 +10,10 @@ contiguous_sublist_indexed(List, Slice, Start, End) :-
     length(Slice, Len),
     End is PreLen + Len.
 
+contiguous_sublist(List, Slice) :-
+    append(_, Tail, List),
+    append(Slice, _, Tail).
+
 all_sublists_indexed(List, Triplets) :-
     findall(
         slice_info(Slice, Start, End),
