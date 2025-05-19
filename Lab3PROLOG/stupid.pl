@@ -60,7 +60,7 @@ currentScoreXYZ(State) :-
 
 play :- initialize(InitState,Plyr), playgame(Plyr,InitState),!. 
 
-playgame(_,State) :- 
+playgame(_,State) :-
     winner(State,Winner), !,
     nl,
     writeln('*** G A M E   O V E R ***'),

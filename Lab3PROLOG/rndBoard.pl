@@ -17,12 +17,14 @@
 %
 % /Håkan Jonsson, LTU
 
+% dynamic(initialize/2), retractall(initialize(_,_)), assertz((initialize(S,1) :- rndBoardXYZ(S))), play.
+
 emptyBoardXYZ([[.,.,.,.,.,.], 
                [.,.,.,.,.,.],  
-	       [.,.,.,.,.,.], 
-	       [.,.,.,.,.,.], 
+	             [.,.,.,.,.,.], 
+	             [.,.,.,.,.,.], 
                [.,.,.,.,.,.], 
-	       [.,.,.,.,.,.] ]).
+	             [.,.,.,.,.,.] ]).
 
 rndBoardXYZ(NewB) :-
   emptyBoardXYZ(B),

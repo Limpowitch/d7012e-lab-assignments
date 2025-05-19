@@ -85,7 +85,8 @@ play :- initialize(InitState,Plyr), playgame(Plyr,InitState).
 playgame(_,State) :- 
   winner(State,Winner), !, 
   % winner(State,Winner,Score), 
-  write('Win by Player number '), writeln(Winner). 
+  write('Win by Player number '), writeln(Winner),
+  printBoard(State). 
   % write('Win by Player number '), write(Winner), 
   % write('With Score '), writeln(Score). 
  
@@ -100,6 +101,10 @@ playgame(Plyr,State) :-
   nextState(Plyr,Move,State,NewState,NextPlyr), 
   playgame(NextPlyr,NewState). 
  
+printBoard([]).
+printBoard([Row|Rows]) :-
+    writeln(Row),
+    printBoard(Rows).
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % getmove(Player,State,Move) 
